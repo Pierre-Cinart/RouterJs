@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>SPA Démo</title>
+</head>
+<body>
+  <h1>Site Démo - SPA avec JavaScript</h1>
+
+  <nav>
+    <a href="/" onclick="route(event)">Accueil</a> |
+    <a href="/menu" onclick="route(event)">Menu</a> |
+    <a href="/contact" onclick="route(event)">Contact</a> |
+    <a href="/oups" onclick="route(event)">Lien cassé (404)</a>
+  </nav>
+
+  <hr />
+
+  <main id="main-page"></main>
+
+  <!-- Lien vers le routeur SPA -->
+  <script type="module" src="front/js/router/router.js"></script>
+</body>
+</html>
