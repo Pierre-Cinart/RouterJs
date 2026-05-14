@@ -2,23 +2,67 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>SPA Démo</title>
+  <title>SPA Demo</title>
 </head>
 <body>
-  <h1>Site Démo - SPA avec JavaScript</h1>
+  <!--
+    index.html est la seule vraie page chargee par le serveur.
 
+    Dans une SPA classique, on pourrait avoir plusieurs fichiers HTML complets.
+    Ici, ce n'est pas le cas : le navigateur charge d'abord ce document, puis
+    le JavaScript decide quel contenu afficher a l'interieur de la page.
+
+    C'est donc ce fichier qui sert de "coquille" ou de "structure globale"
+    pour toute l'application.
+  -->
+  <h1>Site Demo - SPA avec JavaScript</h1>
+
+  <!--
+    Ces liens utilisent un hash router :
+    - #/       pour l'accueil
+    - #/menu   pour la page menu
+    - #/contact pour la page contact
+
+    Tout ce qui vient apres # n'est pas envoye au serveur.
+    Cela veut dire qu'un refresh recharge toujours index.html, puis le routeur
+    JavaScript relit le hash pour afficher la bonne vue.
+
+    Le onclick appelle route(event), une fonction exposee par router.js.
+    Cette fonction empeche la navigation HTML classique et laisse la SPA
+    piloter elle-meme le changement de vue.
+  -->
   <nav>
-    <a href="/" onclick="route(event)">Accueil</a> |
-    <a href="/menu" onclick="route(event)">Menu</a> |
-    <a href="/contact" onclick="route(event)">Contact</a> |
-    <a href="/oups" onclick="route(event)">Lien cassé (404)</a>
+    <a href="#/" onclick="route(event)">Accueil</a> |
+    <a href="#/menu" onclick="route(event)">Menu</a> |
+    <a href="#/contact" onclick="route(event)">Contact</a> |
+    <a href="#/oups" onclick="route(event)">Lien casse (404)</a>
   </nav>
 
   <hr />
 
+  <!--
+    Cette balise <main> est le point de montage principal de la SPA.
+
+    Le routeur ne remplace pas toute la page HTML :
+    il remplace uniquement le contenu de cette zone.
+
+    Exemple :
+    - si l'URL est #/, le routeur injecte home.html
+    - si l'URL est #/contact, le routeur injecte contact.html
+    - si l'URL est inconnue, il injecte la vue 404
+  -->
   <main id="main-page"></main>
 
-  <!-- Lien vers le routeur SPA -->
+  <!--
+    router.js est charge comme module ES.
+
+    Son travail est le suivant :
+    1. lire le hash courant dans l'URL ;
+    2. chercher quelle route correspond a ce hash ;
+    3. charger le fragment HTML associe ;
+    4. l'injecter dans <main> ;
+    5. mettre a jour le titre de l'onglet.
+  -->
   <script type="module" src="front/js/router/router.js"></script>
 </body>
 </html>

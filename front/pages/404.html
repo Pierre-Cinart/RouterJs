@@ -1,6 +1,15 @@
-<!-- /pages/404.html -->
+<!--
+  Ce fragment est la vue 404 du routeur cote client.
+
+  Il est affiche lorsque le hash de l'URL ne correspond a aucune route declaree
+  dans allRoutes.js.
+
+  Exemple :
+  - #/contact  -> route connue, donc cette vue n'est pas utilisee
+  - #/oups     -> route inconnue, donc cette vue est injectee dans <main>
+-->
 <div class="container" style="padding: 2rem; text-align: center;">
   <h1 style="font-size: 4rem; color: #cc0000;">404</h1>
   <p style="font-size: 1.5rem;">La page que vous cherchez est introuvable.</p>
-  <a href="/" onclick="route(event)" style="color: #007bff; font-weight: bold;">Retour à l'accueil</a>
+  <a href="#/" onclick="route(event)" style="color: #007bff; font-weight: bold;">Retour a l'accueil</a>
 </div>
